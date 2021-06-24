@@ -18,7 +18,7 @@ export class register extends Component {
         const {  email, password, username } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-            firebase.firestore().collection("sheep")
+            firebase.firestore().collection("user")
                 .doc(firebase.auth().currentUser.uid)
                 .set({
                     username,
