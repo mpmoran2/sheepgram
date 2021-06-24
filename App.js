@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import { View, Text } from 'react-native';
 import firebase from 'firebase/app';
+
 const firebaseConfig = {
   apiKey: "AIzaSyDk7QvTiIp41mLTs2qkYi2CvYHo8544F50",
   authDomain: "sheepgram-4d568.firebaseapp.com",
@@ -44,15 +45,16 @@ export class App extends Component {
         })
       }else {
         this.setState({
-          loggedIn: false,
+          loggedIn: true,
           loaded: true,
         })  
       }
     })
   }
   render() {
-    const { loggedIn, loaded } = this.setState;
-    if(!loaded){
+    const { loggedIn, loaded } = this.state;
+
+    if (!loaded) {
       return(
         <View style={{ flex: 1, justifyContent: 'center'}}>
           <Text>Loading</Text>
@@ -60,21 +62,20 @@ export class App extends Component {
       )
     }
 
-    if(!loggedIn){
+    if (!loggedIn) {
       return (
         <NavigationContainer>
         <Stack.Navigator initialRouteName="Landing">
           <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}} />
           <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
       );
-    }   
+    }    
 
     return(
       <View style={{ flex: 1, justifyContent: 'center'}}>
-          <Text>User is Logged In</Text>
+        <Text>User Logged In</Text>
       </View>
     )
   }

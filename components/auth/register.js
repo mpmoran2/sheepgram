@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Button, TextInput } from 'react-native'
 import firebase from 'firebase/app'
 require('firebase/auth')
+require("firebase/firestore")
 export class register extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,12 @@ export class register extends Component {
         const {  email, password, username } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
+            firebase.firestore().collection("users")
+                .doc(firebase.auth().currentUser.uid)
+                .set({
+                    username,
+                    email
+                })
             console.log(result)
         })
         .catch((error) => {

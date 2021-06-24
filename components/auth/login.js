@@ -7,14 +7,13 @@ export class login extends Component {
         super(props);
         this.state = {
             email: '',
-            username: '',
             password: ''
         }
         this.onSignUp = this.onSignUp.bind(this)
     }
 
     onSignIn(){
-        const {  email, password} = this.state;
+        const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             console.log(result)
