@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../redux/actions/index'
 
+import FeedScreen from './main/Feed'
+
+const Tab = createBottomTabNavigator();
 
 export class Main extends Component {
     componentDidMount(){
@@ -12,8 +16,6 @@ export class Main extends Component {
     }
     render() {
         const { currentUser } = this.props;
-
-        console.log()
         
         if(currentUser==undefined){
             return(
@@ -21,9 +23,9 @@ export class Main extends Component {
             )
         }
         return (
-            <View style={{ flex: 2, justifyContent: 'center'}}>
-                    <Text>{currentUser.username} is Logged In. Welcome to the Flock!</Text>
-            </View>           
+            <Tab.Navigator>
+            <Tab.Screen name="Feed" component={FeedScreen} />
+          </Tab.Navigator>          
         )
     }
 }
