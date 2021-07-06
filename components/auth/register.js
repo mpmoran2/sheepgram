@@ -28,7 +28,7 @@ export class register extends Component {
         })
         .catch((error) => {
             console.log(error)
-        })
+        });
     }
     render() {
         return (
